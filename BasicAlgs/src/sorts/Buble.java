@@ -1,26 +1,22 @@
 package sorts;
 
-public class Buble {
-
-	public static void main(String[] args) {
-		int[] arr = {4, 3, 65, 5, 8,2, 7, 0};
-		long startTime = System.nanoTime();
-		arr = sort(arr);
-		long endTime = System.nanoTime();
-		int duration = (int) ((endTime - startTime)/Math.pow(10, 6));
-		System.out.println("Duration: " + duration + " ms");
-	}
+public class Buble extends Algorithm {
 	
-	private static int[] sort (int[] arr){
-		int k = 0;
+	public Buble (){}
+	
+	public int[] sort (int[] arr){
+		long startTime = System.nanoTime();		
+		numberOfSteps = 0;
 		for (int i = 0; i < arr.length; i++) {
-	        for (int j = arr.length-1; j >= i ; j--) {
-	        	k++;
-	            System.out.println("Iteration: " + k + "\nElements: " + arr[i] + "vs" +arr[j]);
-	            if (arr[i] < arr[j]) Utils.swap(arr, i, j);
-	            Utils.printArray(arr);
+	        for (int j = i; j < arr.length ; j++) {
+	        	numberOfSteps++;
+//	            System.out.println("Iteration: " + numberOfSteps + "\nElements: " + arr[i] + "vs" +arr[j]);
+	            if (arr[i] > arr[j]) Utils.swap(arr, i, j);
+//	            Utils.printArray(arr);
 	        }
 		}
+		long endTime = System.nanoTime();
+		duration = (float) ((endTime - startTime)/Math.pow(10, 6));
 		return arr;
 	}
 }

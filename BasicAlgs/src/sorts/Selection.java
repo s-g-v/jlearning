@@ -1,28 +1,24 @@
 package sorts;
 
-public class Selection {
+public class Selection extends Algorithm{
 
-	public static void main(String[] args) {
-		int[] arr = {4, 3, 65, 5, 8,2, 7, 0};
-		long startTime = System.nanoTime();
-		arr = sort(arr);
-		long endTime = System.nanoTime();
-		int duration = (int) ((endTime - startTime)/Math.pow(10, 6));
-		System.out.println("Duration: " + duration + " ms");
-	}
+	public Selection (){}
 	
-	private static int[] sort (int[] arr){
-		int k = 0;
+	public int[] sort (int[] arr){
+		long startTime = System.nanoTime();		
+		numberOfSteps = 0;
 		for (int i = 0; i < arr.length -1; i++) {
 			int min = i;
 			for (int j = i+1; j < arr.length; j++) {
-				k++;
-				System.out.println("Iteration: " + k + "\nElements: " + arr[j] + "vs" +arr[min]);
+				numberOfSteps++;
+//				System.out.println("Iteration: " + numberOfSteps + "\nElements: " + arr[j] + "vs" +arr[min]);
 				if (arr[j] < arr[min]) min = j;
 			}
 			Utils.swap(arr, i, min);
-			Utils.printArray(arr);
+//			Utils.printArray(arr);
 		}
+		long endTime = System.nanoTime();
+		duration = (float) ((endTime - startTime)/Math.pow(10, 6));
 		return arr;
 	}
 }
