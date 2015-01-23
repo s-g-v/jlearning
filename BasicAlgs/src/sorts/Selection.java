@@ -1,6 +1,6 @@
 package sorts;
 
-public class Buble {
+public class Selection {
 
 	public static void main(String[] args) {
 		int[] arr = {4, 3, 65, 5, 8,2, 7, 0};
@@ -13,13 +13,15 @@ public class Buble {
 	
 	private static int[] sort (int[] arr){
 		int k = 0;
-		for (int i = 0; i < arr.length; i++) {
-	        for (int j = arr.length-1; j >= i ; j--) {
-	        	k++;
-	            System.out.println("Iteration: " + k + "\nElements: " + arr[i] + "vs" +arr[j]);
-	            if (arr[i] < arr[j]) Utils.swap(arr, i, j);
-	            Utils.printArray(arr);
-	        }
+		for (int i = 0; i < arr.length -1; i++) {
+			int min = i;
+			for (int j = i+1; j < arr.length; j++) {
+				k++;
+				System.out.println("Iteration: " + k + "\nElements: " + arr[j] + "vs" +arr[min]);
+				if (arr[j] < arr[min]) min = j;
+			}
+			Utils.swap(arr, i, min);
+			Utils.printArray(arr);
 		}
 		return arr;
 	}
