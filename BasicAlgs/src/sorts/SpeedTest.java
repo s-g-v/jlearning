@@ -1,6 +1,6 @@
 package sorts;
 
-public class Tests {
+public class SpeedTest {
 
 	public static void main(String[] args){
 		int[] arr = Utils.genArray(10);
