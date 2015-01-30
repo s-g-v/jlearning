@@ -14,7 +14,7 @@ public class Utils {
 	}
 	
 	public static void swap(int[] arr, int i, int j){
-        System.out.println("Change: " + arr[i] + "<->" +arr[j]);
+        //System.out.println("Change: " + arr[i] + "<->" +arr[j]);
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;		

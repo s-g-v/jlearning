@@ -1,19 +1,22 @@
 package sorts;
 
-public class Merge extends Algorithm {
+public class Merge implements Algorithm {
+
+	private float duration;
+	private int numberOfSteps;
 
 	@Override
 	public int[] sort(int[] arr) {
 		long startTime = System.nanoTime();
 		numberOfSteps = 0;
-		mergeSort(arr, 0, arr.length -1);
+		mergeSort(arr, 0, arr.length);
 		long endTime = System.nanoTime();
 		duration = (float) ((endTime - startTime)/Math.pow(10, 6));
 		return arr;
 	}
 	
 	private void mergeSort(int[] arr, int left, int right) {
-		if (left + 1 < right) {
+		if (left + 1< right) {
 			int center = (left + right) >>> 1;
 			mergeSort(arr, left, center);
 			mergeSort(arr, center, right);
@@ -36,5 +39,14 @@ public class Merge extends Algorithm {
 		}
 		System.arraycopy(result, 0, arr, left, size);
 	}
+	
+	@Override
+	public float getDuration() {
+		return duration;
+	}
 
+	@Override
+	public int getTotalSteps() {
+		return numberOfSteps;
+	}
 }

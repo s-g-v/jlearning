@@ -1,18 +1,11 @@
 package sorts;
 
-public abstract class Algorithm {
+public interface Algorithm {
 	
-	protected float duration;
-	protected int numberOfSteps;
+	public int[] sort(int[] arr);
+
+	public float getDuration();
+
+	public int getTotalSteps();
 	
-	abstract public int[] sort(int[] arr);
-
-	public float getDuration() {
-		return duration;
-	}
-
-	public int getTotalSteps() {
-		return numberOfSteps;
-	}
-
 }

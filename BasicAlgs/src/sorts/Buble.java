@@ -1,7 +1,10 @@
 package sorts;
 
-public class Buble extends Algorithm {
+public class Buble implements Algorithm {
 	
+	private float duration;
+	private int numberOfSteps;
+
 	public Buble (){}
 	
 	public int[] sort (int[] arr){
@@ -18,5 +21,15 @@ public class Buble extends Algorithm {
 		long endTime = System.nanoTime();
 		duration = (float) ((endTime - startTime)/Math.pow(10, 6));
 		return arr;
+	}
+
+	@Override
+	public float getDuration() {
+		return duration;
+	}
+
+	@Override
+	public int getTotalSteps() {
+		return numberOfSteps;
 	}
 }

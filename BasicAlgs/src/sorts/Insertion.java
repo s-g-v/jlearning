@@ -2,7 +2,10 @@ package sorts;
 
 import java.util.*;
 
-public class Insertion extends Algorithm{
+public class Insertion implements Algorithm{
+
+	private float duration;
+	private int numberOfSteps;
 
 	public Insertion(){}
 	
@@ -22,4 +25,15 @@ public class Insertion extends Algorithm{
 		duration = (float) ((endTime - startTime)/Math.pow(10, 6));
 		return arr;
 	}
+	
+	@Override
+	public float getDuration() {
+		return duration;
+	}
+
+	@Override
+	public int getTotalSteps() {
+		return numberOfSteps;
+	}
+
 }
