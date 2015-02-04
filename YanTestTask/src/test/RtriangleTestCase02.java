@@ -17,7 +17,7 @@ import tut.*;
  * @author Gennady Sikorskiy
  *
  */
-public class RtriangleTestCases02 {
+public class RtriangleTestCase02 {
 
 	private Vector[] side = new Vector[3]; // Vector is internal class, described bottom.
 	

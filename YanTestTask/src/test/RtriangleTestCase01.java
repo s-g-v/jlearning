@@ -17,7 +17,7 @@ import tut.*;
  * @author Gennady Sikorskiy
  *
  */
-public class RtriangleTestCases01 {
+public class RtriangleTestCase01 {
 
 	private double[] side = new double[3];
 	
