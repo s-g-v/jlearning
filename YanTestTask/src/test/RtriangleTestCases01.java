@@ -31,7 +31,7 @@ public class RtriangleTestCases01 {
 		side[0] = calcDistance(tr.getApexX1(), tr.getApexY1(), tr.getApexX2(), tr.getApexY2());
 		side[1] = calcDistance(tr.getApexX1(), tr.getApexY1(), tr.getApexX3(), tr.getApexY3());
 		side[2] = calcDistance(tr.getApexX2(), tr.getApexY2(), tr.getApexX3(), tr.getApexY3());
-		Arrays.sort(side);
+		Arrays.sort(side); //sort makes easier further calculation
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class RtriangleTestCases01 {
 		System.out.print("Pythagoras test... ");
 		assertTrue("Sides a+b not bigger then c. This is not triangle.", side[0]+side[1] > side[2]);
 		assertTrue("Pythagoras theorem is not satisfied. Triangle is not rectancular.", 
-			(Math.pow(side[0], 2)+Math.pow(side[1], 2)==Math.pow(side[2], 2)));
+			(side[0]*side[0] + side[1]*side[1] == side[2]*side[2]));
 		System.out.println("Passed.");
 	}
 	
