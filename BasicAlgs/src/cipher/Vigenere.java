@@ -2,45 +2,37 @@ package cipher;
 
 public class Vigenere {
 	
-	private int offset = (int)'a';
-	private int numberOfChars = 26;
+	private int offset;
+	private int numberOfChars;
 	private boolean encrypt = true;
 	private boolean decrypt = false;
-	private String key;
 	
-	public Vigenere(String key){
+	public Vigenere(){
+		offset = (int)'a';
+		numberOfChars = 26;
+	}
+
+	public String encrypt(String key, String value){
+		return cipher(encrypt, key, value);
+	}
+	
+	public String decrypt(String key, String value){
+		return cipher(decrypt, key, value);
+	}
+
+	private String cipher (boolean direction, String key, String value) {
 		key = key.toLowerCase();
 		checkKey(key);
-		this.key = key;
-	}
-
-	public String encrypt(String value){
-		return cipher(encrypt, value);
-	}
-	
-	public String decrypt(String value){
-		return cipher(decrypt, value);
-	}
-
-	private void checkKey(String key){
-		for (char sym:key.toCharArray()){
-			if (sym < offset && sym > offset + numberOfChars) {
-				throw new IllegalArgumentException("Keyword should contain only letters a-z.");
-			}
-		}
-	}
-	
-	private String cipher (boolean direction, String value) {
-		value = value.toLowerCase();
-		StringBuilder result = new StringBuilder();
 		int keyIndex = 0;
+		StringBuilder result = new StringBuilder();
+		value = value.toLowerCase();
 		for (char valSymb : value.toCharArray()){
-			if (valSymb < offset || valSymb > offset + numberOfChars) {
+			if (!isLetter(valSymb)) {
 				result.append(valSymb);
 				continue;
 			}				
 			char keySymb = key.charAt(keyIndex % key.length());
-			char newSymbol = cryptSymbol(direction, valSymb, keySymb);
+			char newSymbol = cipher(direction, valSymb, keySymb);
 			result.append(newSymbol);
 			keyIndex++;
 			System.out.println("\tVal + Key symbols: " + valSymb + " + " + keySymb + " = " + newSymbol);
@@ -48,12 +40,24 @@ public class Vigenere {
 		return result.toString();		
 	}
 	
-	private char cryptSymbol (boolean crypt, char value, char key){
+	private char cipher (boolean direction, char value, char key){
 		int resId;
-		if (crypt)
+		if (direction)
 			resId = ((int)key + (int)value - 2*offset) % numberOfChars;
 		else 
 			resId = ((int)value - (int)key + numberOfChars) % numberOfChars;
 		return (char) (resId + offset);
+	}
+	
+	private void checkKey(String key){
+		for (char sym:key.toCharArray()){
+			if (!isLetter(sym)) {
+				throw new IllegalArgumentException("Keyword should contain only letters a-z.");
+			}
+		}
+	}
+	
+	private boolean isLetter(char ch){
+		return (ch >= offset && ch < offset + numberOfChars);
 	}
 }
