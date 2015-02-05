@@ -1,5 +1,10 @@
 package cipher;
 
+/**
+ * Simple test to verify Vigenere cipher
+ * @author G.S.
+ *
+ */
 public class VigenereTest {
 
 	public static void main (String[] args){
