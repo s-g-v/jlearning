@@ -12,6 +12,7 @@ public class VigenereTest {
 		value = result;
 		result = Vigenere.decrypt(key, value);
 		System.out.println(value + " + " + key + " = " + result);
+//		for (int i = 32; i < 65; i++) System.out.print((char)i);
 	}
 	
 
