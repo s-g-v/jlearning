@@ -2,20 +2,45 @@ package cipher;
 
 public class Vigenere {
 	
-	private String key = "keyword";
-	
-	public Vigenere(){
+	public static String encrypt(String key, String value){
+		key = key.toLowerCase();
+		value = value.toLowerCase();
+		StringBuilder result = new StringBuilder();
+		for (int valIndex = 0; valIndex < value.length(); valIndex++){
+			if (value.charAt(valIndex)==' ') {
+				result=result.append(' ');
+				continue;
+			}
+			int keyIndex = valIndex % key.length();
+			int valChNum = value.codePointAt(valIndex) - 'a';
+			int keyChNum = key.codePointAt(keyIndex) - 'a';
+			int resId = (valChNum + keyChNum) % 26;
+			result=result.append((char)(resId+'a'));
+			System.out.print("\tVal + Key symbols: " + value.charAt(valIndex));
+			System.out.println(" + " + key.charAt(keyIndex) + " = " + result.charAt(valIndex));
+			
+		}
+		return result.toString();
 	}
-	
-	public static void main (String[] args){
-		char[] alphabet = new char[26];
-	  	for (int i=0; i< 26; i++) {
-	  		alphabet[i] = (char)('a' + i);
-	   	}
-	  	System.out.println(alphabet);
+
+	public static String decrypt(String key, String value){
+		key = key.toLowerCase();
+		value = value.toLowerCase();
+		StringBuilder result = new StringBuilder();
+		for (int valIndex = 0; valIndex < value.length(); valIndex++){
+			if (value.charAt(valIndex)==' ') {
+				result=result.append(' ');
+				continue;
+			}
+			int keyIndex = valIndex % key.length();
+			int valChNum = value.codePointAt(valIndex);
+			int keyChNum = key.codePointAt(keyIndex);
+			int resId = (valChNum - keyChNum + 26) % 26;
+			result=result.append((char)(resId+'a'));
+			System.out.print("\tVal + Key symbols: " + value.charAt(valIndex));
+			System.out.println(" + " + key.charAt(keyIndex) + " = " + result.charAt(valIndex));
+			
+		}
+		return result.toString();
 	}
-	
-	public String encrypt(String value){
-		return "";
-	} 
 }
