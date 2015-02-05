@@ -4,7 +4,7 @@ public class VigenereTest {
 
 	public static void main (String[] args){
 		String key = "zkeya";
-		String value = "A value to test Z";
+		String value = "A| text to test |Z";
 		Vigenere cipher = new Vigenere(); 
 		
 		System.out.println("Encrypt...");
