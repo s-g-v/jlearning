@@ -14,7 +14,7 @@ import tut.*;
  * scalar multiplication of vectors:
  * AB*BC = |AB|*|BC|*cos(ABC);
  * 
- * @author Gennady Sikorskiy
+ * @author G.S.
  *
  */
 public class RtriangleTestCase02 {

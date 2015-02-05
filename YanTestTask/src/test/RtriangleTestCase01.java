@@ -14,7 +14,7 @@ import tut.*;
  * First version.
  * Test case based on Pythagoras theorem.
  * 
- * @author Gennady Sikorskiy
+ * @author G.S.
  *
  */
 public class RtriangleTestCase01 {
