@@ -2,60 +2,58 @@ package cipher;
 
 public class Vigenere {
 	
-	private static int offset = (int)'a';
-	private static int numberOfChars = 26;
+	private int offset = (int)'a';
+	private int numberOfChars = 26;
+	private boolean encrypt = true;
+	private boolean decrypt = false;
+	private String key;
 	
-	public static String encrypt(String key, String value){
+	public Vigenere(String key){
 		key = key.toLowerCase();
-		value = value.toLowerCase();
-		StringBuilder result = new StringBuilder();
-		for (int valIndex = 0; valIndex < value.length(); valIndex++){
-			int keyIndex = valIndex % key.length();
-			char newSymbol = encrypt(key.charAt(keyIndex), value.charAt(valIndex));
-			result=result.append(newSymbol);
-			System.out.print("\tVal + Key symbols: " + value.charAt(valIndex));
-			System.out.println(" + " + key.charAt(keyIndex) + " = " + result.charAt(valIndex));
-			
-		}
-		return result.toString();
+		checkKey(key);
+		this.key = key;
 	}
 
-	public static char encrypt (char key, char value){
-		char result = value;
-		if (key < offset && key > offset + numberOfChars) {
-			throw new IllegalArgumentException("Keyword should contain only letters a-z.");
-		}
-		if (value >= offset && value < offset + numberOfChars) {
-			int resId = ((int)key + (int)value - 2*offset) % numberOfChars;
-			result = (char) (resId + offset); 
-		}
-		return result;
+	public String encrypt(String value){
+		return cipher(encrypt, value);
 	}
 	
-	public static String decrypt(String key, String value){
-		key = key.toLowerCase();
+	public String decrypt(String value){
+		return cipher(decrypt, value);
+	}
+
+	private void checkKey(String key){
+		for (char sym:key.toCharArray()){
+			if (sym < offset && sym > offset + numberOfChars) {
+				throw new IllegalArgumentException("Keyword should contain only letters a-z.");
+			}
+		}
+	}
+	
+	private String cipher (boolean direction, String value) {
 		value = value.toLowerCase();
 		StringBuilder result = new StringBuilder();
-		for (int valIndex = 0; valIndex < value.length(); valIndex++){
-			int keyIndex = valIndex % key.length();
-			char newSymbol = decrypt(key.charAt(keyIndex), value.charAt(valIndex));
-			result=result.append(newSymbol);
-			System.out.print("\tVal - Key symbols: " + value.charAt(valIndex));
-			System.out.println(" - " + key.charAt(keyIndex) + " = " + result.charAt(valIndex));
-			
+		int keyIndex = 0;
+		for (char valSymb : value.toCharArray()){
+			if (valSymb < offset || valSymb > offset + numberOfChars) {
+				result.append(valSymb);
+				continue;
+			}				
+			char keySymb = key.charAt(keyIndex % key.length());
+			char newSymbol = cryptSymbol(direction, valSymb, keySymb);
+			result.append(newSymbol);
+			keyIndex++;
+			System.out.println("\tVal + Key symbols: " + valSymb + " + " + keySymb + " = " + newSymbol);
 		}
-		return result.toString();
+		return result.toString();		
 	}
 	
-	public static char decrypt (char key, char value){
-		char result = value;
-		if (key < offset && key > offset + numberOfChars) {
-			throw new IllegalArgumentException("Keyword should contain only letters a-z.");
-		}
-		if (value >= offset && value < offset + numberOfChars) {
-			int resId = ((int)value - (int)key + numberOfChars) % numberOfChars;
-			result = (char) (resId + offset); 
-		}
-		return result;
+	private char cryptSymbol (boolean crypt, char value, char key){
+		int resId;
+		if (crypt)
+			resId = ((int)key + (int)value - 2*offset) % numberOfChars;
+		else 
+			resId = ((int)value - (int)key + numberOfChars) % numberOfChars;
+		return (char) (resId + offset);
 	}
 }

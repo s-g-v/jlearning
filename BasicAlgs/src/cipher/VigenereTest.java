@@ -5,15 +5,13 @@ public class VigenereTest {
 	public static void main (String[] args){
 		String key = "key";
 		String value = "value to test";
+		Vigenere cipher = new Vigenere(key); 
 		System.out.println("Encrypt...");
-		String result = Vigenere.encrypt(key, value);
+		String result = cipher.encrypt(value);
 		System.out.println(value + " + " + key + " = " + result);
 		System.out.println("Decrypt...");
 		value = result;
-		result = Vigenere.decrypt(key, value);
+		result = cipher.decrypt(value);
 		System.out.println(value + " + " + key + " = " + result);
-//		for (int i = 32; i < 65; i++) System.out.print((char)i);
 	}
-	
-
 }
