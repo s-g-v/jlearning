@@ -12,9 +12,9 @@ public class Vigenere {
 	private boolean encrypt = true;
 	private boolean decrypt = false;
 	
-	public Vigenere(){
-		offset = (int)'a';
-		numberOfChars = 26;
+	public Vigenere(Alphabet lang){
+		offset = lang.offset();
+		numberOfChars = lang.numberOfChars();
 	}
 	
 	/**
