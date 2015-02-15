@@ -1,4 +1,4 @@
-package Fibs;
+package fibs;
 
 public class FNumbers {
 	
