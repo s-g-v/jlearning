@@ -12,16 +12,16 @@ public class RecursiveMapMerger {
 	public static void main(String[] args){
 		Map<Map<Map<String, String>, String>, String> map1 = new HashMap<>(); 
 		map1.put(Collections.singletonMap(Collections.singletonMap("key1", "val1"), "vall1"), "value1");
-//		map1.put(null, "value1");
 		map1.put(Collections.singletonMap(Collections.singletonMap("key2", "val2"), "vall2"), "value2");
 		map1.put(Collections.singletonMap(Collections.singletonMap("key3", "val3"), "vall3"), "value3");
+//		map1.put(null, "value1");
 		
 		Map<Map<Map<String, String>, String>, String> map2 = new HashMap<>(); 
 		map2.put(Collections.singletonMap(Collections.singletonMap("key1", "val4"), "vall7"), "value7");
-//		map2.put(null, "value1");
 		map2.put(Collections.singletonMap(Collections.singletonMap("key2", "val6"), "vall6"), "value8");
 		map2.put(Collections.singletonMap(Collections.singletonMap("key3", "val7"), "vall8"), "value6");
 		map2.put(Collections.singletonMap(Collections.singletonMap("key5", "val5"), "vall5"), "value5");
+//		map2.put(null, "value1");
 		
 		Map<Map<Map<String, String>, String>, String> map3 = mergeMaps(map1, map2);
 		System.out.println(map3.toString().replace(',', '\n'));
