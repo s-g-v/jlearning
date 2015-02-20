@@ -14,7 +14,7 @@ public class MapMerger {
 //		map1.put(null, "value1");
 		map1.put(Collections.singletonMap("key2", "val2"), "value2");
 		map1.put(Collections.singletonMap("key3", "val3"), "value3");
-
+		
 		Map<Map<String, String>, String> map2 = new HashMap<>(); 
 		map2.put(Collections.singletonMap("key1", "val3"), "value3");
 //		map2.put(null, "value3");
@@ -23,7 +23,7 @@ public class MapMerger {
 		map2.put(Collections.singletonMap("key5", "val5"), "value5");
 		
 		Map<Map<String, String>, String> map3 = mergeMaps(map1, map2);
-		printMap(map3);
+		System.out.println(map3.toString().replace(',', '\n'));
 	}
 	
 	private static <K, V, T> Map<Map<K, V>, T> mergeMaps(Map<Map<K, V>, T> m1, Map<Map<K, V>, T> m2){
@@ -41,17 +41,5 @@ public class MapMerger {
 			if (!firstMapKeys.contains(innerKey)) m1.put(currentMap, m2.get(currentMap));
 		}
 		return m1;
-	}
-	
-	private static <K, V, T> void printMap(Map<Map<K, V>,T> m){
-		Set<Map<K, V>> set = m.keySet();
-		for (Map<K, V> currentMap : set) {
-			if (currentMap == null) {
-				System.out.println("null " + m.get(currentMap));
-				continue;
-			}
-			K key = currentMap.keySet().iterator().next();				
-			System.out.println(key + " " + currentMap.get(key) + " " + m.get(currentMap));
-		}		
 	}
 }
