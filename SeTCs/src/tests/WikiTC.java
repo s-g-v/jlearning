@@ -22,7 +22,7 @@ public class WikiTC {
 		driver.findElement(By.id("searchInput")).clear();
 		driver.findElement(By.id("searchInput")).sendKeys("selenium");
 		driver.findElement(By.id("searchButton")).click();
-		driver.findElement(By.linkText("Автоматизированное тестирование"))
+		driver.findElement(By.linkText("РђРІС‚РѕРјР°С‚РёР·РёСЂРѕРІР°РЅРЅРѕРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ"))
 				.click();
 	}
 

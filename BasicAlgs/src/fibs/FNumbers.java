@@ -3,8 +3,7 @@ package fibs;
 public class FNumbers {
 	
 	public static void main (String[] args) {
-		System.out.print(recF(9));
-		System.out.println();
+		System.out.println(recF(9));
 		iterF(10);
 	}
 	
@@ -13,10 +12,10 @@ public class FNumbers {
 	}
 
 	private static void iterF(int x){
-		int[] result = new int[x];
-		for (int i = 0; i < x; i++){
+		int[] result = new int[x+1];
+		for (int i = 0; i <= x; i++){
 			if (i < 2) {
-				result[i] = 1;
+				result[i] = i;
 			}
 			else {
 				result[i] = result[i-1] + result[i-2]; 
